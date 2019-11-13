@@ -27,6 +27,41 @@ Phase 0: Environment setup
 
 Note them - you will need them in next step.
 
+6. Open `myapp/script.js` file and provide `IdentityPoolIdOutput` value in line 7. Remember to save the file.
+7. Open `myapp/index.php` file and provide  `S3BucketName` value in line 26. Remember to save the file.
+8. Execute following command to retrieve your account id:
+
+`aws sts get-caller-identity`
+
+9. Execute following commands (replace ACCOUNT_ID with you account id)
+
+`aws ecr create-repository --repository-name myrepo`
+
+`cd ~/environment/reinvent/myapp`
+
+`$(aws ecr get-login --no-include-email --region us-east-1)`
+
+`docker build -t myrepo .`
+
+`docker tag myrepo:latest ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
+
+`docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
+
+10. Execute following commands to create final application.
+
+`cd ~/environment/reinvent`
+
+`aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml`
+
+11. Execute following commands to copy three sample files to your bucket. Replace the bucket name with you bucket name.
+
+`aws s3 cp s3://tomash/workshops/vod-platform/01.mp4 s3://YOUR_BUCKET/01.mp4 --acl public-read`
+
+`aws s3 cp s3://tomash/workshops/vod-platform/02.mp4 s3://YOUR_BUCKET/02.mp4 --acl public-read`
+
+`aws s3 cp s3://tomash/workshops/vod-platform/03.mp4 s3://YOUR_BUCKET/03.mp4 --acl public-read`
+
+12. It will take about 3-4 minutes for the applicatiion to be created. After this time, you will find a new stack in CloudFormation service with new output value - pointing to you website. Open it and see if it's working.
 
 
 **Once you're finished with this phase please wait for speakers to present the next one before moving forward.**
