@@ -60,7 +60,7 @@ Note them - you will need them in next step.
 
 11. Execute following commands to copy three sample files to your bucket. Replace the bucket name with you bucket name.
 
-          `aws s3 cp s3://tomash/workshops/vod-platform/01.mp4 s3://YOUR_BUCKET/01.mp4 --acl public-read`
+          aws s3 cp s3://tomash/workshops/vod-platform/01.mp4 s3://YOUR_BUCKET/01.mp4 --acl public-read
 
           `aws s3 cp s3://tomash/workshops/vod-platform/02.mp4 s3://YOUR_BUCKET/02.mp4 --acl public-read`
 
