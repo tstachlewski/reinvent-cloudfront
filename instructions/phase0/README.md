@@ -36,13 +36,13 @@ Note them - you will need them in next step.
 
 9. Execute following commands (replace ACCOUNT_ID with you account id)
 
-    `aws ecr create-repository --repository-name myrepo`
+          `aws ecr create-repository --repository-name myrepo`
 
-    `cd ~/environment/reinvent/myapp`
+          `cd ~/environment/reinvent/myapp`
 
-      `$(aws ecr get-login --no-include-email --region us-east-1)`
+          `$(aws ecr get-login --no-include-email --region us-east-1)`
 
-        `docker build -t myrepo .`
+          `docker build -t myrepo .`
 
           `docker tag myrepo:latest ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
 
@@ -52,9 +52,9 @@ Note them - you will need them in next step.
 
 10. Execute following commands to create final application.
 
-`cd ~/environment/reinvent`
+          `cd ~/environment/reinvent`
 
-`aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml`
+          `aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml`
 
 
 
