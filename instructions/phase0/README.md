@@ -3,9 +3,6 @@ Protect your website and infrastructure using Amazon CloudFront
 
 This repository contains necessary resources for AWS re:Invent 2019 builder session NET302. In this readme you will find detailed instructions for each phase of the workshop.
 
-<img src="../../img/flow0.png" />
-
-
 Phase 0: Environment setup
 -----
 
@@ -31,8 +28,8 @@ Phase 0: Environment setup
 
 Note them - you will need them in next step.
 
-6. Open `myapp/script.js` file and provide `IdentityPoolIdOutput` value in line 7. Remember to save the file.
-7. Open `myapp/index.php` file and provide  `S3BucketName` value in line 26. Remember to save the file.
+6. Open `reinvent/myapp/src/script.js` file and provide `IdentityPoolIdOutput` value in line 7. Remember to save the file.
+7. Open `reinvent/myapp/src/index.php` file and provide  `S3BucketName` value in line 26. Remember to save the file.
 8. Execute following command to retrieve your account id:
 
           aws sts get-caller-identity
