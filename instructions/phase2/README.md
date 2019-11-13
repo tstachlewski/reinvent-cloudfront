@@ -15,8 +15,7 @@ Phase 1: Protecting the website
 7. For pattern put   "*.mp4"
 8. Select 'Customize' in 'Object Caching'
 9. Create Behavior.
-10. Copy again files, this time, they won't be public by default
-11. Execute following commands to copy three sample files to your bucket. Replace the bucket name with you bucket name.
+10. Copy again files, this time, they won't be public by default Replace the bucket name with you bucket name.
 
           aws s3 cp s3://tomash/workshops/vod-platform/01.mp4 s3://YOUR_BUCKET/01.mp4
 
