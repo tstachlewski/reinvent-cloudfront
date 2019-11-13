@@ -69,7 +69,7 @@ Note them - you will need them in next step.
 
 
 
-12. It will take about 3-4 minutes for the applicatiion to be created. After this time, you will find a new stack in CloudFormation service with new output value - pointing to you website. Open it and see if it's working.
+12. It will take about 5 minutes for the application to be created. After this time, you will find a new stack in CloudFormation service with new output value - pointing to you website. Open it and see if it's working.
 
 
 **Once you're finished with this phase please wait for speakers to present the next one before moving forward.**
