@@ -13,13 +13,13 @@ Phase 0: Environment setup
 2. Open Cloud9 service and create new environment. You can use default settings.
 3. Download all needed resources using following command.
 
-          `aws s3 cp TODO`
+          aws s3 cp TODO
 
 4. Execute following command. It will create a new CloudFormation template - which will create a new S3 bucket, DynamoDB table and Cognito resources.
 
-          `cd ~/environment/reinvent`
+          cd ~/environment/reinvent
 
-          `aws cloudformation create-stack --stack-name AppResources --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://resources.yaml`
+          aws cloudformation create-stack --stack-name AppResources --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://resources.yaml
 
 5. It will take about 1 minute for above resources to be created. Open CloudFormation service in AWS Console, where you will find information about your new stack. You will find 2 output parameters:
 * `IdentityPoolIdOutput`
@@ -31,30 +31,30 @@ Note them - you will need them in next step.
 7. Open `myapp/index.php` file and provide  `S3BucketName` value in line 26. Remember to save the file.
 8. Execute following command to retrieve your account id:
 
-          `aws sts get-caller-identity`
+          aws sts get-caller-identity
 
 
 9. Execute following commands (replace ACCOUNT_ID with you account id)
 
-          `aws ecr create-repository --repository-name myrepo`
+          aws ecr create-repository --repository-name myrepo
 
-          `cd ~/environment/reinvent/myapp`
+          cd ~/environment/reinvent/myapp
 
-          `$(aws ecr get-login --no-include-email --region us-east-1)`
+          $(aws ecr get-login --no-include-email --region us-east-1)
 
-          `docker build -t myrepo .`
+          docker build -t myrepo .
 
-          `docker tag myrepo:latest ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
+          docker tag myrepo:latest ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
 
-          `docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
+          docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
 
 
 
 10. Execute following commands to create final application.
 
-          `cd ~/environment/reinvent`
+          cd ~/environment/reinvent
 
-          `aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml`
+          aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml
 
 
 
@@ -62,9 +62,9 @@ Note them - you will need them in next step.
 
           aws s3 cp s3://tomash/workshops/vod-platform/01.mp4 s3://YOUR_BUCKET/01.mp4 --acl public-read
 
-          `aws s3 cp s3://tomash/workshops/vod-platform/02.mp4 s3://YOUR_BUCKET/02.mp4 --acl public-read`
+          aws s3 cp s3://tomash/workshops/vod-platform/02.mp4 s3://YOUR_BUCKET/02.mp4 --acl public-read
 
-          `aws s3 cp s3://tomash/workshops/vod-platform/03.mp4 s3://YOUR_BUCKET/03.mp4 --acl public-read`
+          aws s3 cp s3://tomash/workshops/vod-platform/03.mp4 s3://YOUR_BUCKET/03.mp4 --acl public-read
 
 
 
