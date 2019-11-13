@@ -33,6 +33,7 @@ Note them - you will need them in next step.
 
 `aws sts get-caller-identity`
 
+
 9. Execute following commands (replace ACCOUNT_ID with you account id)
 
 `aws ecr create-repository --repository-name myrepo`
@@ -47,11 +48,15 @@ Note them - you will need them in next step.
 
 `docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest`
 
+
+
 10. Execute following commands to create final application.
 
 `cd ~/environment/reinvent`
 
 `aws cloudformation create-stack --stack-name MyApplication --region us-east-1 --capabilities CAPABILITY_IAM --template-body file://myapp.yaml`
+
+
 
 11. Execute following commands to copy three sample files to your bucket. Replace the bucket name with you bucket name.
 
@@ -60,6 +65,8 @@ Note them - you will need them in next step.
 `aws s3 cp s3://tomash/workshops/vod-platform/02.mp4 s3://YOUR_BUCKET/02.mp4 --acl public-read`
 
 `aws s3 cp s3://tomash/workshops/vod-platform/03.mp4 s3://YOUR_BUCKET/03.mp4 --acl public-read`
+
+
 
 12. It will take about 3-4 minutes for the applicatiion to be created. After this time, you will find a new stack in CloudFormation service with new output value - pointing to you website. Open it and see if it's working.
 
