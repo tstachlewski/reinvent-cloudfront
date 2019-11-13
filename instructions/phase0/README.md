@@ -11,9 +11,13 @@ Phase 0: Environment setup
 
 1. Sign into the AWS Console and choose `us-east-1` (N. Virginia) region.
 2. Open Cloud9 service and create new environment. You can use default settings.
-3. Download all needed resources using following command.
+3. Download all needed resources using following commands.
 
           aws s3 cp s3://tomash/workshops/vod-platform/reinvent.zip .
+
+          unzip reinvent.zip
+
+          rm reinvent.zip
 
 4. Execute following command. It will create a new CloudFormation template - which will create a new S3 bucket, DynamoDB table and Cognito resources.
 
