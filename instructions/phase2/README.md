@@ -3,7 +3,7 @@ Protect your website and infrastructure using Amazon CloudFront
 
 This repository contains necessary resources for AWS re:Invent 2019 builders session NET302. In this readme you will find detailed instructions for each phase of the workshop.
 
-Phase 1: Protecting the website
+Phase 2: Using OAI
 -----
 
 1. Open CloudFront service and open distribution which you have created in previous phase.
