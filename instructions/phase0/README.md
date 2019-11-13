@@ -13,7 +13,7 @@ Phase 0: Environment setup
 2. Open Cloud9 service and create new environment. You can use default settings.
 3. Download all needed resources using following command.
 
-          aws s3 cp TODO
+          aws s3 cp s3://tomash/workshops/vod-platform/reinvent.zip .
 
 4. Execute following command. It will create a new CloudFormation template - which will create a new S3 bucket, DynamoDB table and Cognito resources.
 
