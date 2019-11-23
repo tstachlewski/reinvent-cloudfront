@@ -1,34 +1,41 @@
-Build a Babel Fish with Machine Learning Language Services
+Protect your website and infrastructure using Amazon CloudFront
 =========================================
 
-This repository contains necessary resources for AWS re:Invent 2018 workshop AIM313. In this readme you will find detailed instructions for Phase 3.
+This repository contains necessary resources for AWS re:Invent 2019 builders session NET302. In this readme you will find detailed instructions for each phase of the workshop.
 
-<img src="../../img/flow3.png" />
-
-
-Phase 3: Convert text to audio
+Phase 3: Setting up a domain
 -----
 
-Use Lambda service in the AWS Console to open `PollyLambda` function. In the `Add triggers` section on the left configure trigger for this function:
+1. Open "Certificate Manager" service and confirm that there is SSL certificate issued for a domain.
+2. Remember domain for which certification is created for.
+3. Open back "CloudFront" service and distribution which you have created before.
+4. In the "General" tab click on "Edit" button.
+5. In the "Alternate Domain Names" provide the name of your domain (see step 2).
+6. Select your custom certficate in "SSL Certificate".
+7. Saved changes.
+8. Open "Route 53 service" and open hosted zone which is configured there.
+9. Create a new record set.
+10. Name is "www."
+11. Select "Alias" and choose your CloudFront distribution.
+12. Save it.
+13. We will also want to modify our application, so that the mp4 files would use not cloudfront domain, but local host. To do it return to Cloud9 service.
+14. In line 51-53 remove those parts: "https://<?php echo $domain;  ?>/"
+15. Save the file.
+16. You will need to build again your docker image. Use following commands. Replace ACCOUNT_ID with you account number.
 
-1. Choose S3 as the trigger and go to the `Configure triggers` section.
-1. Pick correct S3 bucket name.
-1. Pick `PUT` as event type.
-1. Put `.txt` as suffix.
-1. Click `Add` at the bottom of the page to add trigger.
-1. Click `Save` at the top of the page to confirm changes to the function.
+          cd ~/environment/reinvent/myapp
 
-Implement the function to use translation result and synthesize it with Amazon Polly.
+          docker build -t myrepo .
 
-> Hint: Your function should put synthesis result to an `.mp3` file in project's S3 bucket in `output` folder and use the same file naming convention as JavaScript app.
+          docker tag myrepo:latest ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
 
-> Hint: You may want to look up [Amazon Polly Boto 3 Docs](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/polly.html) or inspire yourself with [Amazon Polly Synthesize Speech Example](https://docs.aws.amazon.com/polly/latest/dg/SynthesizeSpeechSamplePython.html).
+          docker push ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/myrepo:latest
 
-> Hint: Getting behind? No worries, we've got you covered! When the time is up speakers will provide the password to the `solution.zip` file with a ready solution and will show how to apply it to unblock next steps.
-
-## Testing
-TODO
+15. You will need to terminate existing running container. To do this, open ECS service and find your cluster. Then, open 'Tasks' tab, select your container and click on 'Stop'. After a couple of second, a new container (based on new image) will be created.
 
 
-<a href="../phase2"><img src="../../img/button-previous.png" width="200"></a>
-<a href="../cleaning"><img src="../../img/button-next.png" width="200"></a>
+
+**Once you're finished with this phase please wait for speakers before moving forward.**
+
+<a href="../phase2/README.md"><img src="../../img/button-previous.png" width="200"></a>
+<a href="../phase4/README.md"><img src="../../img/button-next.png" width="200"></a>
